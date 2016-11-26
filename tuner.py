@@ -194,11 +194,11 @@ rds_message_types = {0: "program_information",
 # and https://github.com/bastibl/gr-rds/blob/master/lib/parser_impl.cc
 
 
-class RDSAdapter(gr.sync_block):
+class RDSAdapter(gr.basic_block):
     """ RDSAdapter makes it easy to use RDS data """
     def __init__(self):
-        gr.sync_block.__init__(self, name=b"rds_adapter", in_sig=None,
-                               out_sig=None)
+        gr.basic_block.__init__(self, name=b"rds_adapter", in_sig=None,
+                                out_sig=None)
         self.message_port_register_in(pmt.intern(b'in'))
         self.set_msg_handler(pmt.intern(b'in'), self.msg_handler)
         self.callback = None
