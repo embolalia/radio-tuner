@@ -66,102 +66,154 @@ audio-volume-medium-symbolic</property>
       </object>
     </child>
     <child>
-      <object class="GtkBox">
+      <object class="GtkStack" id="stack">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkScale" id="frequency">
+              <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="adjustment">frequency_adjustment</property>
-                <property name="round_digits">2</property>
-                <property name="digits">2</property>
-                <signal name="value-changed" handler="frequency_changed" swapped="no"/>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkScale" id="frequency">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="adjustment">frequency_adjustment</property>
+                    <property name="round_digits">2</property>
+                    <property name="digits">2</property>
+                    <signal name="value-changed" handler="frequency_changed" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="frequency_spinner">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="width_chars">6</property>
+                    <property name="xalign">0.5</property>
+                    <property name="input_purpose">number</property>
+                    <property name="orientation">vertical</property>
+                    <property name="adjustment">frequency_adjustment</property>
+                    <property name="climb_rate">0.01</property>
+                    <property name="digits">2</property>
+                    <property name="numeric">True</property>
+                    <property name="value">87.6</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">0</property>
+                <property name="padding">2</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="frequency_spinner">
+              <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="width_chars">6</property>
-                <property name="xalign">0.5</property>
-                <property name="input_purpose">number</property>
-                <property name="orientation">vertical</property>
-                <property name="adjustment">frequency_adjustment</property>
-                <property name="climb_rate">0.01</property>
-                <property name="digits">2</property>
-                <property name="numeric">True</property>
-                <property name="value">87.6</property>
+                <property name="can_focus">False</property>
+                <property name="spacing">1</property>
+                <child>
+                  <object class="GtkLabel" id="station_name">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="width_chars">16</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="padding">5</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="program_type">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="rds_flags">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="padding">2</property>
-            <property name="position">2</property>
+            <property name="name">main</property>
           </packing>
         </child>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="spacing">1</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="station_name">
+              <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="width_chars">16</property>
+                <property name="pixel_size">128</property>
+                <property name="opacity">0.2</property>
+                <property name="icon_name">action-unavailable-symbolic</property>
+                <property name="margin-bottom">18</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="padding">5</property>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="program_type">
+              <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="opacity">0.5</property>
+                <property name="label" translatable="yes">No RTL-SDR device detected</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
               </object>
               <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="rds_flags">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
+                 <property name="expand">False</property>
+                 <property name="fill">True</property>
+                 <property name="position">1</property>
+               </packing>
+             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="name">nodevice</property>
           </packing>
         </child>
       </object>

@@ -19,6 +19,7 @@
 from __future__ import print_function, unicode_literals
 
 from tuner import MonoFMRceiver
+import rtlsdr  # For device enumeration only
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -63,10 +64,13 @@ class SignalHandler(object):
         header = self.builder.get_object("headerbar")
         header.set_title("%s FM" % freq.get_value())
         header.set_subtitle("%s MHZ" % freq.get_value())
+        # change the frequency (1e6 = mega):
         self.receiver.frequency = freq.get_value() * 1e6
 
 
 def main():
+    has_device = (rtlsdr.librtlsdr.rtlsdr_get_device_count() > 0)
+
     receiver = MonoFMRceiver()
     builder = Gtk.Builder()
     builder.add_from_file("tuner.ui")
@@ -85,8 +89,15 @@ def main():
             if data == "None":
                 data = ""
             program_type.set_text(data)
-    receiver.rds_adapter.callback = rds_callback
-    receiver.start()
+
+    if has_device:
+        receiver.rds_adapter.callback = rds_callback
+        receiver.start()
+    else:
+        # Show "no device" error screen
+        header.set_title("")
+        header.set_subtitle("")
+        builder.get_object("stack").set_visible_child_name("nodevice")
 
     Gtk.main()
 
