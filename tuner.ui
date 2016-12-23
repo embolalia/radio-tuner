@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk+" version="3.10"/>
   <object class="GtkAdjustment" id="frequency_adjustment">
     <property name="lower">87</property>
     <property name="upper">108</property>
@@ -44,7 +44,7 @@ audio-volume-high-symbolic
 audio-volume-low-symbolic
 audio-volume-medium-symbolic</property>
             <child internal-child="plus_button">
-              <object class="GtkButton">
+              <object class="GtkButton" id="foo">
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
@@ -53,7 +53,7 @@ audio-volume-medium-symbolic</property>
               </object>
             </child>
             <child internal-child="minus_button">
-              <object class="GtkButton">
+              <object class="GtkButton" id="bar">
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
@@ -70,12 +70,12 @@ audio-volume-medium-symbolic</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="baz">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="abc">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
@@ -122,7 +122,7 @@ audio-volume-medium-symbolic</property>
               </packing>
             </child>
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="def">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">1</property>
@@ -174,14 +174,14 @@ audio-volume-medium-symbolic</property>
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="ghi">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkImage">
+              <object class="GtkImage" id="jkl">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">128</property>
@@ -196,7 +196,7 @@ audio-volume-medium-symbolic</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="mno">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="opacity">0.5</property>

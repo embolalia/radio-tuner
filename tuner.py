@@ -52,8 +52,6 @@ class MonoFMRceiver(gr.top_block):
 
         # Initialize SDR source
         self.rtlsdr_source = osmosdr.source(args=b"numchan=1 rtl=%s" % sdr)
-        self.rtlsdr_source.set_sample_rate(sample_rate)
-        self.rtlsdr_source.set_gain(self._gain)
         self.frequency = 87600000
         # self.gain = 'auto'
 
@@ -78,7 +76,7 @@ class MonoFMRceiver(gr.top_block):
         self.audio_sink = audio.sink(48000, b'', True)
 
         # RDS stuff
-        self.rds_parser = rds.parser(False, False)
+        self.rds_parser = rds.parser(False, False, 0)
         self.rds_decoder = rds.decoder(False, False)
 
         # Yes, there are two FM decoders here.
@@ -135,8 +133,8 @@ class MonoFMRceiver(gr.top_block):
                      self.rds_decoder)
 
         # RDS Decoder -> RDS Parser -> RDS Adapter
-        self.msg_connect((self.rds_decoder, b'out'), (self.rds_parser, b'in'))
-        self.msg_connect((self.rds_parser, b'out'), (self.rds_adapter, b'in'))
+        self.msg_connect(self.rds_decoder, b'out', self.rds_parser, b'in')
+        self.msg_connect(self.rds_parser, b'out', self.rds_adapter, b'in')
 
     @property
     def gain(self):
