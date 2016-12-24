@@ -52,6 +52,8 @@ class MonoFMRceiver(gr.top_block):
 
         # Initialize SDR source
         self.rtlsdr_source = osmosdr.source(args=b"numchan=1 rtl=%s" % sdr)
+        self.rtlsdr_source.set_sample_rate(sample_rate)
+        self.rtlsdr_source.set_gain(self._gain)
         self.frequency = 87600000
         # self.gain = 'auto'
 
